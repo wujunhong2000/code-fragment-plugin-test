@@ -2,9 +2,9 @@
   "name": "code-fragment-plugin-test",
   "displayName": "code-fragment-plugin-test",
   "description": "vscode代码片段插件测试",
-  "version": "1.77.0",
+  "version": "1.75.1",
   "engines": {
-    "vscode": "^1.77.0"
+    "vscode": "^1.75.1"
   },
   "categories": [
     "Snippets"
