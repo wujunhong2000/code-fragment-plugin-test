@@ -1,3 +1,4 @@
+vscode代码片段插件测试
 # code-fragment-plugin-test README
 
 This is the README for your extension "code-fragment-plugin-test". After writing up a brief description, we recommend including the following sections.
