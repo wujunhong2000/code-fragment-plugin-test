@@ -15,16 +15,14 @@ type IConfig = {
     }
 }
 
-// Get the extension configuration 获取扩展配置
+// 获取扩展配置
 export function getConfig() {
-    const config = vscode.workspace.getConfiguration("captainStack");
-
-    // Get the sites configuration
+    const config = vscode.workspace.getConfiguration("fragment");
+    // 获取站点配置
     const sites = {
         "stackoverflow.com": config.settings.sites.stackoverflow,
     };
-
-    // Return the configuration
+    // 返回配置
     return {
         settings: {
             sites,

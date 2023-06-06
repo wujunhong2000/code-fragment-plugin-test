@@ -1,15 +1,14 @@
 {
-	"name": "captain-stack",
-	"displayName": "Captain Stack",
+	"name": "vscode-fragment-plugin",
+	"displayName": "Vscode Fragment Plugin",
 	"description": "输入关键字快速生成模板块代码（登录、数字藏品领取、NOS上传等等）",
 	"version": "1.0.0",
-	"publisher": "captainstack",
+	"publisher": "wjh",
 	"icon": "icon.png",
 	"homepage": "https://github.com/wujunhong2000/code-fragment-plugin-test",
 	"repository": "https://github.com/wujunhong2000/code-fragment-plugin-test",
 	"keywords": [
 		"code-suggestion",
-		"copilot",
 		"code-inference",
 		"snippets"
 	],
@@ -35,13 +34,13 @@
 			"title": "CaptainStack",
 			"type": "object",
 			"properties": {
-				"captainStack.settings.sites.stackoverflow": {
+				"fragment.settings.sites.stackoverflow": {
 					"title": "stackoverflow.com",
 					"description": "Enable searching code in StackOverflow",
 					"type": "boolean",
 					"default": true
 				},
-				"captainStack.settings.maxResults": {
+				"fragment.settings.maxResults": {
 					"type": "integer",
 					"description": "Limit the max number of results",
 					"default": 12

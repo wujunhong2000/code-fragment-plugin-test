@@ -10,7 +10,11 @@ export default class ExtractorStackOverflow extends ExtractorAbstract {
     URL = "stackoverflow.com";
 
     extractSnippets = (options: FetchPageResult): SnippetResult[] => {
+        console.log('options.textContent', options.textContent);
+        
         const target = parseHTML(options.textContent);
+        console.log("🚀 ~ file: ExtractorStackOverflow.ts:14 ~ ExtractorStackOverflow ~ target:", target)
+        
 
         const answersWithCodeBlock = Array.from(target.window.document.querySelectorAll(".answer"))
             .filter((item: any) => item.querySelector("code") != null);
