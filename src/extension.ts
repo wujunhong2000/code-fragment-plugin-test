@@ -1,6 +1,8 @@
 import * as vscode from 'vscode';
 import { search } from './utils/search';
 import { matchSearchPhrase } from './utils/matchSearchPhrase';
+import { searchJsonFiles } from './utils/fileSearch'
+
 
 export function activate(_: vscode.ExtensionContext) {
 
@@ -12,15 +14,16 @@ export function activate(_: vscode.ExtensionContext) {
             const textBeforeCursor = document.getText(
                 new vscode.Range(position.with(undefined, 0), position)
             );
-            
+            searchJsonFiles('./src/code', '冒泡排序');
             // 匹配搜索短语
             const match = matchSearchPhrase(textBeforeCursor);
             let items: any[] = [];
-                
             if (match) {
                 let rs;
                 try {
+                    console.log(0);
                     rs = await search(match.searchPhrase);
+
                     if (rs) {
                         items = rs.results.map(item => {
                             const output = `\n${item.code}`;

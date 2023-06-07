@@ -9,8 +9,7 @@ export function fetchPageTextContent(url: string): Promise<FetchPageResult> {
     return new Promise((resolve, reject) => {
         return fetch(url)
             .then(rs => {
-                console.log('rsssssssssssss', rs);
-                
+                console.log('rsssssssssssss66', rs);
                 return rs.text();
             })
             .then(textContent => {

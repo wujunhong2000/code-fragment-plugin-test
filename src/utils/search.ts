@@ -30,6 +30,7 @@ export async function search(
             for (const y in urls) {
               fetchResult = await fetchPageTextContent(urls[y]);
               results = results.concat(extractor.extractSnippets(fetchResult));
+              console.log(999);
               console.log(
                 "🚀 ~ file: search.ts:50 ~ promise ~ results:",
                 results
