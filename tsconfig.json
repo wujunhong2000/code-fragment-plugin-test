@@ -5,9 +5,11 @@
 		"lib": ["es2020"],
 		"outDir": "out",
 		"strict": true,
+		"resolveJsonModule": true,
 		"rootDir": "src",
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true
 	},
+	"include": ["**/*.json"],
 	"exclude": ["node_modules", ".vscode-test", "./test"]
 }

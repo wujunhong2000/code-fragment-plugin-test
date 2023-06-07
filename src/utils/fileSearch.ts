@@ -2,28 +2,34 @@ const fs = require('fs');
 const path = require('path');
 
 export function searchJsonFiles(rootFolder: any, keyword: any) {
+  const result: string[] = [];
   console.log(1);
+  console.log('path', path);
+  console.log('fs', fs);
   
-  const result: Array<[]> = [];
-  const subFolders = fs.readdirSync(rootFolder);
-  subFolders.forEach((subFolder: any) => {
-    const fullPath = path.join(rootFolder, subFolder);
-    const stats = fs.statSync(fullPath);
-    if (stats.isDirectory()) {
-      const jsonFiles = fs.readdirSync(fullPath).filter((file: any) => path.extname(file) === '.json');
-      jsonFiles.forEach((jsonFile: any) => {
-        const jsonPath = path.join(fullPath, jsonFile);
-        const jsonContent = fs.readFileSync(jsonPath);
-        const data = JSON.parse(jsonContent);
-        if (data.key.includes(keyword)) {
-          console.log('data.value', data.value);
-          
-          // result(...data.value);
-        }
-      });
-    }
-  });
+  console.log('rootFolder', rootFolder);
+  
+  console.log('fs.readdirSync(rootFolder)', fs.readdirSync(rootFolder));
+  
+  // fs.readdirSync(rootFolder).forEach((file: string) => {
+  //   console.log('path1', path);
+  //   const filePath = path.join(rootFolder, file);
+    
+  //   // const stat = fs.statSync(filePath);
+
+  //   // if (stat.isDirectory()) {
+  //   //   result.push(...searchJsonFiles(filePath, keyword));
+  //   // } else if (path.extname(file) === '.json') {
+  //   //   const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  //   //   const values = Object.values(data);
+  //   //   console.log('values', values);
+
+  //   //   // if (keyword) {
+  //   //   //   const filteredValues = values.filter((value) => value === keyword && typeof value === 'string');
+  //   //   //   result.push(...filteredValues);
+  //   //   // }
+  //   // }
+  // });
+
   return result;
 }
-
-const filePath = path.join(__dirname, 'file.txt');
