@@ -14,7 +14,7 @@ export function activate(_: vscode.ExtensionContext) {
             const textBeforeCursor = document.getText(
                 new vscode.Range(position.with(undefined, 0), position)
             );
-            searchJsonFiles('../src/code', '冒泡排序');
+            searchJsonFiles(undefined, '冒泡排序');
             // 匹配搜索短语
             const match = matchSearchPhrase(textBeforeCursor);
             let items: any[] = [];

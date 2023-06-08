@@ -10,6 +10,6 @@
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true
 	},
-	"include": ["**/*.json"],
+	"include": ["./src/**/*"],
 	"exclude": ["node_modules", ".vscode-test", "./test"]
 }
