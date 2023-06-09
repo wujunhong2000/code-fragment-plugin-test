@@ -1,32 +1,33 @@
-const fs = require('fs');
-const path = require('path');
-const codeDir = path.resolve(__dirname, '../code');
+const fs = require("fs");
+const path = require("path");
+const codeDir = path.resolve(__dirname, "../code");
 
-export function searchJsonFiles(rootFolder: any = codeDir, keyword: any) {
+/*
+ * 递归搜索文件code文件夹下所有的json文件，如果搜索关键词在文件中的key中，则push到结果
+ * @param {String} rootFolder 文件夹路径
+ * @param {String} keyword 搜索词
+ * @return {Array} 匹配的结果
+ */
+export function searchJsonFiles(rootFolder: string = codeDir, keyword: string): string[] {
   const result: string[] = [];
-  console.log('fs.readdirSync(rootFolder)', fs.readdirSync(rootFolder));
-  
   fs.readdirSync(rootFolder).forEach((file: string) => {
-    console.log("🚀 ~ file: fileSearch.ts:8 ~ fs.readdirSync ~ file:", file)
     const filePath = path.join(rootFolder, file);
-    console.log("🚀 ~ file: fileSearch.ts:12 ~ fs.readdirSync ~ filePath:", filePath)
     const stat = fs.statSync(filePath);
-    console.log("🚀 ~ file: fileSearch.ts:14 ~ fs.readdirSync ~ stat:", stat)
+    // 如果该层还是文件夹
     if (stat.isDirectory()) {
       result.push(...searchJsonFiles(filePath, keyword));
-      console.log("🚀 ~ file: fileSearch.ts:16 ~ fs.readdirSync ~ result:", result)
-    } else if (path.extname(file) === '.json') {
-      console.log("🚀 ~ file: fileSearch.ts:20 ~ fs.readdirSync ~ path.extname(file):", path.extname(file))
-      
-      const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-      const values = Object.values(data);
-
-      // if (keyword) {
-      //   const filteredValues = values.filter((value) => value === keyword && typeof value === 'string');
-      //   result.push(...filteredValues);
-      // }
+    } else if (path.extname(file) === ".json") {
+      const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+      if (keyword) {
+        const key = data?.key || [];
+        const value = data?.value || [];
+        const hasValue = key.includes(keyword);
+        if (hasValue && value && Array.isArray(value)) {
+          result.push(...value);
+        }
+      }
     }
   });
-
+  console.log("result", result);
   return result;
 }

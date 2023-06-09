@@ -6,6 +6,7 @@ type SearchMatchResult = {
     commentSyntax: string,
     commentSyntaxEnd: string,
     searchPhrase: string,
+    search: string,
 }
 
 /**
@@ -31,7 +32,8 @@ export function matchSearchPhrase(input: string): SearchMatchResult | undefined 
         return {
             commentSyntax,
             commentSyntaxEnd,
-            searchPhrase: `${searchPhrase} ${fileType}`
+            searchPhrase: `${searchPhrase} ${fileType}`,
+            search: searchPhrase,
         };
     }
 
