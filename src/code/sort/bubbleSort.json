@@ -1,8 +1,0 @@
-{
-   "key": ["bubble sort", "冒泡排序", "冒泡" ],
-   "value": [
-      "const bubbleSort = array => {\n  const arr = Array.from(array); // avoid side effects\n  for (let i = 1; i < arr.length; i++) {\n    for (let j = 0; j < arr.length - i; j++) {\n      if (arr[j] > arr[j + 1]) {\n        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n      }\n    }\n  }\n  return arr;\n};\n",
-      "function bubble(arr) {\r\n      var len = arr.length;\r\n    \r\n      for (var i = 0; i < len ; i++) {\r\n        for(var j = 0 ; j < len - i - 1; j++){ // this was missing\r\n        if (arr[j] > arr[j + 1]) {\r\n          // swap\r\n          var temp = arr[j];\r\n          arr[j] = arr[j+1];\r\n          arr[j + 1] = temp;\r\n        }\r\n       }\r\n      }\r\n      return arr;\r\n    }\r\n\r\ndocument.write(bubble([1,9,2,3,7,6,4,5,5]));",
-      "var array = [6,2,3,7,5,4,1];\nfunction bubbleSort(arr) {\n    for(let j=0;j<arr.length;j++) {\n        for(let i = 0; i < arr.length; i++) {\n            if(arr[i]>arr[i+1] && (i+1 < arr.length)) {\n                var temp = arr[i];\n                arr[i] = arr[i+1];\n                arr[i+1] = temp;\n            }\n        }\n    }      \n    return arr;\n}\nconsole.log(bubbleSort(array));\n"
-   ]
-}

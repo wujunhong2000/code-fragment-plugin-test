@@ -1,33 +1,65 @@
-const fs = require("fs");
-const path = require("path");
-const codeDir = path.resolve(__dirname, "../code");
+import fs = require("fs");
+import path = require("path");
+import { catalogItem } from "../catalog";
+import catalog from "../catalog";
+
+// 获取关键词所在的文件夹路径
+function getFolderPath(keyword: string): string[] {
+  const path: string[] = [];
+  catalog.forEach((item: catalogItem) => {
+    if (item.key.includes(keyword)) path.push(item.path);
+  });
+  return path;
+}
+
+// 读取txt文件内容
+function readFile(filePath: any): string {
+  let formattedData = "";
+  const data = fs.readFileSync(filePath, "utf8");
+
+  // 进行字符串处理，添加换行符和缩进
+  formattedData = addNewlinesAndIndent(data);
+  return formattedData;
+}
+
+// 添加换行符和缩进的函数
+function addNewlinesAndIndent(text: string): string {
+  // 在每行的末尾添加换行符
+  const lines = text.split("\n");
+  const formattedLines = lines.map((line) => line + "\n");
+
+  // 添加缩进
+  const indentedText = formattedLines.map((line) => "  " + line).join("");
+
+  return indentedText;
+}
 
 /*
- * 递归搜索文件code文件夹下所有的json文件，如果搜索关键词在文件中的key中，则push到结果
- * @param {String} rootFolder 文件夹路径
+ * 读取搜索词匹配到文件夹路径下的.txt文件转为字符串，push进结果数组
  * @param {String} keyword 搜索词
  * @return {Array} 匹配的结果
  */
-export function searchJsonFiles(rootFolder: string = codeDir, keyword: string): string[] {
+export function getMatchingFiles(keyword: string): string[] {
+  if (!keyword) return [];
+
   const result: string[] = [];
-  fs.readdirSync(rootFolder).forEach((file: string) => {
-    const filePath = path.join(rootFolder, file);
-    const stat = fs.statSync(filePath);
-    // 如果该层还是文件夹
-    if (stat.isDirectory()) {
-      result.push(...searchJsonFiles(filePath, keyword));
-    } else if (path.extname(file) === ".json") {
-      const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
-      if (keyword) {
-        const key = data?.key || [];
-        const value = data?.value || [];
-        const hasValue = key.includes(keyword);
-        if (hasValue && value && Array.isArray(value)) {
-          result.push(...value);
-        }
+
+  // 获取关键词对应的文件夹路径
+  const resPaths: string[] = getFolderPath(keyword);
+  console.log("resPaths", resPaths);
+  if (resPaths.length === 0) return [];
+  resPaths.forEach((resPath) => {
+    fs.readdirSync(resPath).forEach((file: string) => {
+      const filePath = path.join(resPath, file);
+      console.log("filePath", filePath);
+      if (path.extname(file) === ".txt") {
+        // 将.txt文件转为字符串
+        const res: string = readFile(filePath);
+        console.log("res", res);
+        if (res) result.push(res);
       }
-    }
+    });
   });
-  console.log("result", result);
+
   return result;
 }

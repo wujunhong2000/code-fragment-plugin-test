@@ -22,7 +22,6 @@ export function matchSearchPhrase(input: string): SearchMatchResult | undefined 
         
         const [_, commentSyntax, searchPhrase, commentSyntaxEnd] = match;
 
-        // @ts-ignore
         let fileType = window.activeTextEditor.document.languageId;
 
         if (fileType === "plaintext") {

@@ -1,7 +1,0 @@
-{
-   "key": ["quick sort", "快速排序", "快速" ],
-   "value": [
-      "function quicksort(array) {\r\n  if (array.length <= 1) {\r\n    return array;\r\n  }\r\n\r\n  var pivot = array[0];\r\n  \r\n  var left = []; \r\n  var right = [];\r\n\r\n  for (var i = 1; i < array.length; i++) {\r\n    array[i] < pivot ? left.push(array[i]) : right.push(array[i]);\r\n  }\r\n\r\n  return quicksort(left).concat(pivot, quicksort(right));\r\n};\r\n\r\nvar unsorted = [23, 45, 16, 37, 3, 99, 22];\r\nvar sorted = quicksort(unsorted);\r\n\r\nconsole.log('Sorted array', sorted);",
-      "function stableSort(v, f)\n{\n    if (f === undefined) {\n        f = function(a, b) {\n            a = \"\"+a; b = \"\"+b;\n            return a < b ? -1 : (a > b ? 1 : 0);\n        }\n    }\n    var dv = [];\n    for (var i=0; i<v.length; i++) {\n        dv[i] = [v[i], i];\n    }\n    dv.sort(function(a, b){\n              return f(a[0], b[0]) || (a[1] - b[1]);\n            });\n    for (var i=0; i<v.length; i++) {\n        v[i] = dv[i][0];\n    }\n}\n"
-   ]
-}
